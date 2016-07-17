@@ -35,6 +35,15 @@ Usage
 | <img src="screenshots/delete.png" width="100"> | Delete Button | Delete entry |
 | <img src="screenshots/clear.png" width="100"> | Clear Button | Clear all history |
 
+Library
+---
+  * <a href="http://purecss.io/">Pure CSS 0.6.0</a>
+  * <a href="https://blog.jquery.com/2015/07/13/jquery-3-0-and-jquery-compat-3-0-alpha-versions-released/">jQuery v3.0.0</a>
+
+
+
+
+
 
 
 
