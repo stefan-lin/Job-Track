@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "JobTracker",
+  "short_name": "JobTracker",
+  "description": "This Chrome plugin will assist user to track the job applications.",
+  "version": "0.0.1",
+  "minimum_chrome_version": "38",
+  "permissions": [
+    "tabs",
+    "storage"
+   ],
+  "browser_action":{
+    "default_icon": "assets/icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Check this job!"
+  },
+  
+  "content_scripts":[{
+    "js": [ "jqueryMin.js", "popup.js" ],
+    "css": [ "puremin.css" ],
+    "matches": [ "http://*/*", "https://*/*"]
+  }]
+}

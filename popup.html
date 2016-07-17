@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+  <head>
+    <title>JobTracker</title>
+    <script src="jqueryMin.js"></script>
+    <script src="popup.js"></script>
+    <link rel="stylesheet" type="text/css" href="puremin.css" media="screen" />
+    <!--<link rel="stylesheet" type="text/css" href="styles.css" media="screen"/>-->
+    <style type="text/css">
+      a{
+        font-size: 16px;
+        font-weight: bold;
+      }
+      a:link{
+        text-decoration: none;
+      }
+      a:visited{
+        text-decoration: none;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+      a:active{
+        text-decoration: underline;
+      }
+      body{
+        max-width: 400px;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      legend{
+        margin-left: 4px;
+        font-family: Impact, Charcoal, sans-serif;;
+      }
+      input{
+        font-family: sans-serif;
+      }
+      button{
+        font-family: Arial Rounded MT Bold;
+      }
+      .divline{
+        border: 3px dotted #0099CC;
+        margin-left:10px;
+        margin-right:10px;
+        margin-bottom: 16px;
+      }
+      .onoffswitch {
+        position: relative; width: 40px;
+        -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+      }
+      .onoffswitch-checkbox {
+        display: none;
+      }
+      .onoffswitch-label {
+        display: block; overflow: hidden; cursor: pointer;
+        border: 2px solid #999999; border-radius: 10px;
+      }
+      .onoffswitch-inner {
+        display: block; width: 200%; margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+      }
+      .onoffswitch-inner:before, .onoffswitch-inner:after {
+        display: block; float: left; width: 50%; height: 16px; padding: 0; line-height: 16px;
+        font-size: 12px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+        box-sizing: border-box;
+      }
+      .onoffswitch-inner:before {
+        content: "O";
+        padding-left: 5px;
+        background-color: #34A7C1; color: #FFFFFF;
+      }
+      .onoffswitch-inner:after {
+        content: "X";
+        padding-right: 5px;
+        background-color: #EEEEEE; color: #999999;
+        text-align: right;
+      }
+      .onoffswitch-switch {
+        display: block; width: 8px; margin: 4px;
+        background: #FFFFFF;
+        position: absolute; top: 0; bottom: 0;
+        right: 20px;
+        border: 2px solid #999999; border-radius: 10px;
+        transition: all 0.3s ease-in 0s; 
+      }
+      .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+        margin-left: 0;
+      }
+      .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+        right: 0px; 
+      }
+      
+      a > span {
+        display: none;
+        color: #000;
+        text-decoration: none;
+        padding: 3px;
+      }
+      a:hover > span {
+        display: block;
+        position: absolute;
+        background-color: #FFF;
+        border: 1px solid #CCC;
+        margin: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="pure-form pure-form-stacked">
+    <fieldset>
+        <legend>JobTracker by ysl</legend>
+        <div class="pure-g">
+          <input class="pure-u-11-24"
+            maxlength="30"
+            type="text"
+            id="cmpy"
+            placeholder="Company Name" 
+            style="margin-left: 4px; margin-right: 10px; margin-top: 4px; margin-bottom: 4px;" />
+          <input class="pure-u-11-24"
+            maxlength="30"
+            type="text"
+            id="posi"
+            placeholder="Position" 
+            style="margin-top: 4px; margin-bottom: 4px;" />
+        </div>
+        <div class="pure-g">
+          <input class="pure-u-11-24"
+            maxlength="30"
+            type="text"
+            id="note"
+            placeholder="Notes" 
+            style="margin-left: 4px; margin-right: 10px; margin-bottom: 4px;" />
+          <button class="pure-u-11-24 pure-button pure-button-primary"
+            style="margin-bottom: 4px; font-family: Arial; font-weight: bold;"
+            type="button"
+            id="addButton">ADD</button>
+        </div>
+    </fieldset>
+    </form>    
+    </div>
+    <hr class="divline" />
+    <div style="overflow-y:auto;">
+      <table id="tbl" class="pure-table" style="width: 100%; margin-left: 4px; margin-bottom: 4px; margin-right: 8px;">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Result</th> 
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <!--<div id="showURL"></div>-->
+    <div style="text-align: center; margin-bottom: 8px; margin-top: 4px;">
+      <button id="clearHistory" class="pure-button pure-button-primary" style="font-size: 110%; background-color: red;">
+        CLEAR
+      </button>
+    </div>
+  </body>
+</html>
