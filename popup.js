@@ -42,6 +42,9 @@ class Job{
   }
 } // END CLASS
 
+/**
+ *  INITIALIZE THE STORAGE AREA
+ */
 function init(){
   chrome.storage.sync.get({acc_j_id: -1}, function(result){
     if(result.acc_j_id != -1){ // USER HAD ALREADY ADDED ENTREIS
@@ -58,9 +61,12 @@ function init(){
   });
 }
 
+/**
+ * CLEAR HISTORY AND RESET THE acc_j_id (ACCUMULATE JOB ID) BACK TO 0
+ */
 function clear_history(){
   $('#tbl > tbody').each(function() {
-    $(this).remove();
+    $(this).remove();   // REMOVE ALL TABLE ROWS
   });
   chrome.storage.sync.clear(function (result){
     chrome.storage.sync.set({acc_j_id: 0}, function(result){
@@ -69,6 +75,11 @@ function clear_history(){
   });
 }
 
+/**
+ * UPDATE THE TOGGLE SWITCH
+ *   1. SPLIT ID STRING (URL + ^ + TIME)
+ *   2. MODIFY STORAGE BASED UPON URL ENTRY
+ */
 function check_update(s_id){
   var arr = s_id.split('^');
   chrome.storage.sync.get('jobs', function(result){
@@ -90,6 +101,10 @@ function check_update(s_id){
   });
 }
 
+/**
+ * GENERATE TOGGLE SWITCH
+ *   ID OF TOGGLE SWITCH IS URL + ^ + TIME
+ */
 function get_toggle_switch(rslt, s_id){
   var check_box_div = $('<div/>', {'class': 'onoffswitch' });
   var check_box = $('<input/>', {
@@ -119,7 +134,7 @@ function get_toggle_switch(rslt, s_id){
 }
 
 /**
- * TO-DO: bug need to fix - not working
+ * GENERATE A DELETE BUTTON
  */
 function get_delete_button(){
   var new_button = $('<button/>', {
@@ -150,6 +165,9 @@ function get_delete_button(){
   return new_button;
 }
 
+/**
+ * GENERATE A LINK ELEMENT
+ */
 function get_link(name, url, note){
   var new_link = $('<a/>', { 'href': url, 'text': name });
   new_link.click(function(){ chrome.tabs.create({url: url}); });
@@ -160,6 +178,9 @@ function get_link(name, url, note){
   return new_link;
 }
 
+/**
+ * SHOW TABLE ROW
+ */
 function display_row(job_input){
   var new_row = $('<tr/>', { 'class': 'pure-table-odd' });
   var new_cell = $('<td/>');
@@ -177,6 +198,9 @@ function display_row(job_input){
   $('#tbl').append(new_row);
 }
 
+/**
+ * ADDING LISTENER TO THE ADD BUTTON
+ */
 function init_add_button(name_of_company, url){
   var add = document.getElementById('addButton');
   if(add){
@@ -206,6 +230,7 @@ function init_add_button(name_of_company, url){
         else{
           notes = $.trim($('#note').val());
         }
+        // CREATING A NEW JOB OBJECT
         var new_job = new Job(name_of_company, url, notes);
         chrome.storage.sync.get({acc_j_id: -1}, function(result){
           var curr_j_id = result.acc_j_id;
@@ -242,6 +267,9 @@ function init_add_button(name_of_company, url){
   } // END IF
 }
 
+/**
+ * ADDING LISTENER TO THE CLEAR BUTTON
+ */
 function init_clear_button(){
   var clear_button = document.getElementById('clearHistory');
   if(clear_button){
